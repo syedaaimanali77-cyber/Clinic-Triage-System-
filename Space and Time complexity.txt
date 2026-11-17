@@ -1,0 +1,157 @@
+
+
+                                     ------------ SPACE AND TIME COMPLEXITY --------------
+
+1. Why does LinkedQueue keep a tail reference? What would Enqueue cost without it?
+
+In linkedQueue tail is the last Node of the queue. For instance in our linked queue file
+we use 
+       --------------------
+        tail.Next=newNode; 
+          tail=newNode; 
+       --------------------  
+       
+coz we already know the last node of queue so, we can add new patient directly .
+with tail complexity is O(1) bcz the work stays same even if the number of patients increases.
+without tail the time complexity is O(n) bcz when the patients increases the work increases as well 
+we use this when we have to search a patient registry one by one.   
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+2. PatientRegistry.Find checks every slot. How many checks could it make with 10,000 patients?
+
+
+In patient registry.cs the find method search every patient one by one . In this case our time complexity is linear means O(n). Which simply means if our 
+ program has 10,000 patients so it will check each patient .
+
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 3. Why does the registry double its size, instead of growing by one slot each time?
+ 
+ In our Registry at first we declare an array with the capacity of 4 indexes .WHEN IT GETS FULL WE create another array with the capacity of array.Length*2 which means the capacity of array is now 8 
+ then we copy old patients list in the array so we can save the reord of every patient when it get full the it automatically by multiplying the size of array with 2 by using dynamic array.
+
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 4. Why must the treated log never shift elements? What would shifting cost?
+ 
+ The treatedLog.cs file only store last 5 treated patients when it is full it will remove the oldest patient treated and here we use constant Time complexity bcz we one array position directly.
+
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 5. Which line of your code decides whether a patient is urgent, and how does Clinic pick the right queue
+ without checking the patient's type?
+ 
+ In the project we created IsUrgent property through which we can decide the patient is urgent or not in Clinic.Cs file we use the condition 
+ 
+ if (p.IsUrgent)
+{
+    urgentQueue.Enqueue(p): 
+}
+else
+{
+    normalQueue.Enqueue(p):
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#BIG O questions:
+
+1. O(1) means Constant Time in this we can perform all the operations directly without reviewing 
+all the items.
+In our linked list Enque operation 
+
+Node<T> newNode = new Node<T>(item):
+
+if (head == null)
+{
+    head = newNode;
+    tail = newNode;
+}
+else
+{
+    tail.Next = newNode;
+    tail = newNode;
+}
+
+We create a newNode obj and apply condition by using if else which simple means when
+our head is empty it simply means when a newnode created the head and tail is newNode
+but if we have linkedlist which is not empty so it is clear that the last node we have is tail 
+when we add the newNode then the tail move to the newNode added directly.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+2. LinkedQueue Dequeue operation;
+   The time complexity here is also O(1) bcz here we can remove the first patient directly
+   without searching .
+   bcz Queue work with the principle of FIFO which means first in first out .
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+   3. LinkedQueue.Remove operation;
+    The Time complexity is linear here means O(n) means before removing any item we have to check one by one .
+    For example a receptionist five appointment tokens to 5 patients then due to some reason patient 
+    4 left then the receptionist have to remove patient 4 from the schedule the remove operation start proceding and review every 
+    patient id or name one by one when found it remove his/her So, the time complexity here is linear.
+
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+    5. .Add method in PatientRegistry.cs 
+      The time complexity is O(n) here bcz whenever we add new patient system may have to 
+      check all the registered patient so we can't register same patient twice .
+
+      for (int i = 0; i < count; i++)
+{
+    if (patient[i].Id == p.Id)
+    {
+        throw new InvalidOperationException(Patient already exist.");
+    }
+    else
+    {
+    
+   patient[count] = p; 
+   count++;
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. When Array is Full
+  When array is full it simply means progarm need new array and copy all the patients
+  in it thats why we created Dynamic array.
+
+  Patient[] newPatient =  new Patient[patient.Length * 2];
+
+for (int i = 0; i < count; i++)
+{
+    newPatient[i] = patient[i];
+}
+
+patient = newPatient;
+
+In this operation we make a new array and put it equal to the old array length multiply by 2
+copy all the previous patient record and the capacity increase from 4 to 8.
+Time complexity here is linear.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. PatientRegistry.Find;
+   Time complexity i Linear bcz for this process program need to check every patient id or name.
+
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+   7. HistoryStack
+             Complexity is  big O (1) we can add or remove item directly through the stack.
+
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8. TreatedLog.Add ;
+     In our treated log we store only last 5 patient treated when the patient 6 arrives the system
+     delete oldest patient directly so this is Linear Time complexity. 
+
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+   
